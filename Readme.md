@@ -9,3 +9,7 @@
    Truck: 5, 6;
    Car: 7 - 21;
    Handicapped: 19, 20;
+
+3. customer id:
+   parkingfloor+0+parkingspotnumbers
+   example: 2 floor + parking space num 6 --> 206
