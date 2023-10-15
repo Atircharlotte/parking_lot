@@ -1,6 +1,7 @@
 from ParkingLot import ParkingLot
 from ParkingFloor import ParkingFloor
 from Parking import Parking
+from Leaving import Leaving
 
 parking_lot = ParkingLot(id = 1, address='123 Twoon Street')
 
@@ -10,4 +11,7 @@ for i in range(4):
 
 #execution
 parking = Parking(parking_lot)
+parking.run()
+
+parking = Leaving(parking_lot)
 parking.run()

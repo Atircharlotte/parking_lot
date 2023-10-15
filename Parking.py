@@ -1,5 +1,6 @@
 from UserAuthenticator import UserAuthenticator 
 from Admin import Admin
+from Customer import Customer
 
 class Parking:
     def __init__(self, parking_lot):
@@ -75,11 +76,12 @@ class Parking:
             return f"You have parked your {vehicle_type} on floor {floor.floor_number}, spot {spot_number}."
         else:
             return f"Sorry, there are no available spaces for {vehicle_type} on floor {floor.floor_number}."
-
+    
     def run(self):
-        while True:
+        #while True:
             self.welcome()
             user = self.user_authenticator.authenticate_user()
+
 
             if isinstance(user, Admin):
                 while True:
@@ -95,7 +97,7 @@ class Parking:
                     elif admin_choice == '2':
                         if user.quit_system():
                             print("Goodbye! Have a great day.")
-                            return
+                            return 
                     else:
                         print("Invalid choice. Please try again.")
             elif user == 'Customer':
@@ -107,10 +109,24 @@ class Parking:
                     print(f"Invalid floor number. Please choose a floor between 1 and {len(self.parking_lot.floors)}.")
                     floor_number = int(input("Enter the floor number where you want to park: "))
 
+
                 self.show_available_spots(type_vehicle, floor_number)
                 spot_number = int(input("Enter the spot number where you want to park: "))
+                # customer will get id for corresponding parking space 
+                #floor numebr and spot number are saparated by '0'
+                parking_space_id = f"{floor_number}0{spot_number}"
+                #park at the corresponding space
+                if (parking_space_id in self.parking_lot.parked_space_id):
+                    print("Sorry, this place is taken.")
+                else:
+                    self.parking_lot.add_parked_id(parking_space_id)
+                    #print(parking_space_id)
+                    #print(self.parking_lot.parked_space_id)
+                
+
                 message = self.choisir_place(type_vehicle, floor_number, spot_number)
                 print(message)
+                
 
             else:
                 print(f"Sorry, {user} functionality will be added later.")

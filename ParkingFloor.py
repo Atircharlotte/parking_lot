@@ -3,7 +3,7 @@ class ParkingFloor:
 
     def __init__(self, floor_number):
         self.floor_number = floor_number
-        self.capacity = 20
+        self.capacity = 22
         self.available_spaces = {
             'Car': 14,
             'Van': 2,
